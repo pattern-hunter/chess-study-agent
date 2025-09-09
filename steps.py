@@ -23,7 +23,7 @@ def download_lichess_games(state: cls.State):
 
 def analyze_games(state: cls.State):
     prompt = (
-        "Given the games in PGN notation, act like a chess coach and answer the question.\n"
+        open("prompts/analyze_games.md", "r").read(),
         f"Games: {state['games']}"
         f"Question: {state['question']}"
     )
