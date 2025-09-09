@@ -1,6 +1,6 @@
 from langchain_community.tools.sql_database.tool import QuerySQLDatabaseTool
-import classes as cls
-import lichess
+import agent.classes as cls
+import agent.lichess as lichess
 
 def get_lichess_params(state: cls.State):
     # TODO: add ability to supply 'since' parameter for lichess call.
@@ -16,8 +16,12 @@ def get_lichess_params(state: cls.State):
     return state
 
 def download_lichess_games(state: cls.State):
-    print(f"Downloading {state['count']} games")
-    games = lichess.get_user_games_from_lichess("pattern_hunter", 1736959353, int(state["count"]))
+    count = state['count']
+    if count < 2:
+        print(f"Analyzing {count} game")
+    else:
+        print(f"Analyzing {count} games")
+    games = lichess.get_user_games_from_lichess("pattern_hunter", 1736959353, int(count))
     state["games"] = games
     return state
 
