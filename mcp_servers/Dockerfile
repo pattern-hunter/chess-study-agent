@@ -8,4 +8,4 @@ RUN uv sync --locked
 
 RUN source .venv/bin/activate
 
-CMD ["uv", "run", "python", "lichess.py"]
+CMD ["uv", "run", "lichess.py"]
